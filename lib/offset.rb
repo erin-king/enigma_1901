@@ -16,4 +16,8 @@ class Offset
     date
   end
 
+  def squared_date
+    @date.to_i ** 2
+  end
+
 end

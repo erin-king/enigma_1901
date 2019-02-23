@@ -13,6 +13,13 @@ class EncryptTest < Minitest::Test
     assert_instance_of Encrypt, @encrypt
   end
 
+  def test_it_can_create_shifts_using_key_and_date_arguments
+    assert_equal 3, @encrypt.shift.shift_a
+    assert_equal 15, @encrypt.shift.shift_b
+    assert_equal 25, @encrypt.shift.shift_c
+    assert_equal 38, @encrypt.shift.shift_d
+  end
+
 end
 
 #tests

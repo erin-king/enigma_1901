@@ -5,7 +5,9 @@ require './lib/shift'
 
 class Encrypt
 
-  def initialize(message, key = nil, date = nil)
+  attr_reader :shift
+
+  def initialize(message, key, date)
     @message = message
     @shift = Shift.new(Key.new(key), Offset.new(date))
   end

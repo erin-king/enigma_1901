@@ -8,9 +8,15 @@ require './lib/encrypt'
 
 class EncryptTest < Minitest::Test
 
+  def setup
+    @offset = Offset.new("112982")
+    @key = Key.new("01234")
+    @shift = Shift.new(@key, @offset)
+    @encrypt = Encrypt.new("MEAN cats!", "01234", "112982")
+  end
+
   def test_it_exists
-    encrypt = Encrypt.new("MEAN cats!", "01234", "112982")
-    assert_instance_of Encrypt, encrypt
+    assert_instance_of Encrypt, @encrypt
   end
 
 end

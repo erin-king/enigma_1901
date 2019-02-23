@@ -16,14 +16,21 @@ class DecryptTest < Minitest::Test
     assert_instance_of Decrypt, @decrypt
   end
 
-  def test_it_can_decrypt_message
-    skip
-    assert_equal "abc abc ", @decrypt.decrypt_message("dqakdqak")
+  def test_decrypt_returns_hash
+    expected = {
+          decryption: "abc abc ",
+          key: "01234",
+          date: "112982"
+        }
+      assert_equal expected, @decrypt.decrypt("dqakdqak")
   end
 
-  def test_it_can_decrypt_message_returning_non_alphabet_characters_as_is
-    skip
-    assert_equal "abc abc !", @decrypt.decrypt_message("dqakdqak!")
+  def test_it_can_decrypt_cyphertext
+    assert_equal "abc abc ", @decrypt.decrypt_cyphertext("dqakdqak")
+  end
+
+  def test_it_can_decrypt_cyphertext_returning_non_alphabet_characters_as_is
+    assert_equal "abc abc !", @decrypt.decrypt_cyphertext("dqakdqak!")
   end
 
   def test_it_can_find_a_letters_index

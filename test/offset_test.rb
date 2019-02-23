@@ -35,5 +35,9 @@ class OffsetTest < Minitest::Test
     assert_equal "112982", offset.format_date("112982")
   end
 
+  def test_it_squares_the_date
+    assert_equal 12764932324, @offset.squared_date
+  end
+
 
 end

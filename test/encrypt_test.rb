@@ -6,7 +6,7 @@ require './lib/encrypt'
 class EncryptTest < Minitest::Test
 
   def setup
-    @encrypt = Encrypt.new("MEAN cats!", "01234", "112982")
+    @encrypt = Encrypt.new("01234", "112982")
   end
 
   def test_it_exists
@@ -18,6 +18,25 @@ class EncryptTest < Minitest::Test
     assert_equal 15, @encrypt.shift.shift_b
     assert_equal 25, @encrypt.shift.shift_c
     assert_equal 38, @encrypt.shift.shift_d
+  end
+
+  def test_it_can_encrypt_message
+    skip
+    assert_equal "dqakdqak", @encrypt.encrypt("abc abc ")
+  end
+
+  def test_it_can_encrypt_a_letter
+    #remove? bc apply_shift_to_letter
+    skip
+    assert_equal "f", @encrypt.encrypt("c")
+  end
+
+  def test_it_can_find_a_letters_index
+    assert_equal 2, @encrypt.find_letter_index("c")
+  end
+
+  def test_it_can_apply_shift_to_letter
+    assert_equal "f", @encrypt.apply_shift_to_letter(3, "c")
   end
 
 end

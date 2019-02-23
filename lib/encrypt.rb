@@ -13,14 +13,11 @@ class Encrypt
   end
 
   def encrypt(message)
-  #   message.split(//)
-  #   letter_index = @alphabet.each_with_index do |letter, index|
-  #     if letter == message
-  #       return index
-  #     end
-  #   end
-  # end
-    @alphabet.rotate(@shift.shift_a + letter_index)
+    encryption = []
+    message.split(//).each do |letter|
+      #new method
+    end
+    encryption
     #find index of each message letter
     #rotate message letter by shift
     #return encryption: cyphertext.to_s
@@ -28,8 +25,13 @@ class Encrypt
     #return date:
   end
 
+  def apply_shift_to_letter(shift, letter)
+
+    shifted_letter = @alphabet.rotate(shift + find_letter_index(letter))
+    shifted_letter.flatten[0]
+  end
+
   def find_letter_index(letter)
-    # message.split(//)
     @alphabet.each_with_index do |alpha, index|
       if alpha == letter
         return index

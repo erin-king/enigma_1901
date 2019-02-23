@@ -21,7 +21,7 @@ class EncryptTest < Minitest::Test
   end
 
   def test_it_can_encrypt_message
-    skip
+    # skip
     assert_equal "dqakdqak", @encrypt.encrypt("abc abc ")
   end
 

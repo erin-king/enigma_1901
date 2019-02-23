@@ -14,10 +14,23 @@ class Encrypt
 
   def encrypt(message)
     encryption = []
+    counter = 0
     message.split(//).each do |letter|
-      #new method
+      if counter == 0 #shift_a
+        encryption << apply_shift_to_letter(@shift.shift_a, letter)
+      elsif counter == 1 #shift_b
+        encryption << apply_shift_to_letter(@shift.shift_b, letter)
+      elsif counter == 2 #shift_c
+        encryption << apply_shift_to_letter(@shift.shift_c, letter)
+      elsif counter == 3 #shift_d
+        encryption << apply_shift_to_letter(@shift.shift_d, letter)
+      else counter == 4 #reset shift
+        counter = 0
+        encryption << apply_shift_to_letter(@shift.shift_a, letter)
+      end
+      counter += 1
     end
-    encryption
+    encryption.join
     #find index of each message letter
     #rotate message letter by shift
     #return encryption: cyphertext.to_s
@@ -26,7 +39,6 @@ class Encrypt
   end
 
   def apply_shift_to_letter(shift, letter)
-
     shifted_letter = @alphabet.rotate(shift + find_letter_index(letter))
     shifted_letter.flatten[0]
   end

@@ -10,6 +10,14 @@ class Decrypt
     @alphabet = ("a".."z").to_a << " "
   end
 
+  def apply_shift_to_letter(shift, letter)
+    if find_letter_index(letter) == nil
+      return letter
+    else
+      (@alphabet.rotate(find_letter_index(letter) + (27 - shift))).flatten[0]
+    end
+  end
+
   def find_letter_index(letter)
     @alphabet.each_with_index do |alpha, index|
       if alpha == letter
@@ -47,21 +55,4 @@ end
 #     end
 #   end
 #   encryption.join
-# end
-#
-# def apply_shift_to_letter(shift, letter)
-#   if find_letter_index(letter) == nil
-#     return letter
-#   else
-#     (@alphabet.rotate(shift + find_letter_index(letter))).flatten[0]
-#   end
-# end
-#
-# def find_letter_index(letter)
-#   @alphabet.each_with_index do |alpha, index|
-#     if alpha == letter
-#       return index
-#     end
-#   end
-#   return nil
 # end

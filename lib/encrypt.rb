@@ -40,7 +40,11 @@ class Encrypt
   end
 
   def apply_shift_to_letter(shift, letter)
-    (@alphabet.rotate(shift + find_letter_index(letter))).flatten[0]
+    if find_letter_index(letter) == nil
+      return letter
+    else
+      (@alphabet.rotate(shift + find_letter_index(letter))).flatten[0]
+    end
   end
 
   def find_letter_index(letter)
@@ -49,6 +53,7 @@ class Encrypt
         return index
       end
     end
+    return nil
   end
 
 end

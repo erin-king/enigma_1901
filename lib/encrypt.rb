@@ -13,22 +13,38 @@ class Encrypt
   end
 
   def encrypt(message)
+    {
+      encryption: encrypt_message(message),
+      key: shift.key.key,
+      date: shift.offset.date
+    }
+  end
+
+  def encrypt_message(message)
     encryption = []
-    message.split(//).each do |letter|
-      #new method
+    counter = 0
+    message.downcase.split(//).each do |letter|
+      counter += 1
+      if counter == 1
+        encryption << apply_shift_to_letter(@shift.shift_a, letter)
+      elsif counter == 2
+        encryption << apply_shift_to_letter(@shift.shift_b, letter)
+      elsif counter == 3
+        encryption << apply_shift_to_letter(@shift.shift_c, letter)
+      elsif counter == 4
+        encryption << apply_shift_to_letter(@shift.shift_d, letter)
+        counter = 0
+      end
     end
-    encryption
-    #find index of each message letter
-    #rotate message letter by shift
-    #return encryption: cyphertext.to_s
-    #return key:
-    #return date:
+    encryption.join
   end
 
   def apply_shift_to_letter(shift, letter)
-
-    shifted_letter = @alphabet.rotate(shift + find_letter_index(letter))
-    shifted_letter.flatten[0]
+    if find_letter_index(letter) == nil
+      return letter
+    else
+      (@alphabet.rotate(shift + find_letter_index(letter))).flatten[0]
+    end
   end
 
   def find_letter_index(letter)
@@ -37,9 +53,7 @@ class Encrypt
         return index
       end
     end
+    return nil
   end
 
-
 end
-
-#enum#with_index

@@ -13,6 +13,15 @@ class EncryptTest < Minitest::Test
     assert_instance_of Encrypt, @encrypt
   end
 
+  def test_encrypt_returns_hash
+    expected = {
+          encryption: "dqakdqak",
+          key: "01234",
+          date: "112982"
+        }
+      assert_equal expected, @encrypt.encrypt("abc abc ")
+  end
+
   def test_it_can_create_shifts_using_key_and_date_arguments
     assert_equal 3, @encrypt.shift.shift_a
     assert_equal 15, @encrypt.shift.shift_b
@@ -21,14 +30,15 @@ class EncryptTest < Minitest::Test
   end
 
   def test_it_can_encrypt_message
-    skip
-    assert_equal "dqakdqak", @encrypt.encrypt("abc abc ")
+    assert_equal "dqakdqak", @encrypt.encrypt_message("abc abc ")
   end
 
-  def test_it_can_encrypt_a_letter
-    #remove? bc apply_shift_to_letter
-    skip
-    assert_equal "f", @encrypt.encrypt("c")
+  def test_it_can_encrypt_message_with_capital_letters
+    assert_equal "dqakdqak", @encrypt.encrypt_message("Abc aBc ")
+  end
+
+  def test_it_can_encrypt_message_returning_non_alphabet_characters_as_is
+    assert_equal "dqakdqak!", @encrypt.encrypt_message("abc abc !")
   end
 
   def test_it_can_find_a_letters_index

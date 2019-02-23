@@ -12,30 +12,33 @@ class Encrypt
     @alphabet = ("a".."z").to_a << " "
   end
 
+  #return encryption: cyphertext.to_s
+  #return key:
+  #return date:
+
   def encrypt(message)
+    
+  end
+
+  def encrypt_message(message)
     encryption = []
     counter = 0
     message.split(//).each do |letter|
-      if counter == 0 #shift_a
+      if counter == 0
         encryption << apply_shift_to_letter(@shift.shift_a, letter)
-      elsif counter == 1 #shift_b
+      elsif counter == 1
         encryption << apply_shift_to_letter(@shift.shift_b, letter)
-      elsif counter == 2 #shift_c
+      elsif counter == 2
         encryption << apply_shift_to_letter(@shift.shift_c, letter)
-      elsif counter == 3 #shift_d
+      elsif counter == 3
         encryption << apply_shift_to_letter(@shift.shift_d, letter)
-      else counter == 4 #reset shift
+      else counter == 4
         counter = 0
         encryption << apply_shift_to_letter(@shift.shift_a, letter)
       end
       counter += 1
     end
     encryption.join
-    #find index of each message letter
-    #rotate message letter by shift
-    #return encryption: cyphertext.to_s
-    #return key:
-    #return date:
   end
 
   def apply_shift_to_letter(shift, letter)

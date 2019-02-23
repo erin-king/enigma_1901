@@ -21,14 +21,7 @@ class EncryptTest < Minitest::Test
   end
 
   def test_it_can_encrypt_message
-    # skip
-    assert_equal "dqakdqak", @encrypt.encrypt("abc abc ")
-  end
-
-  def test_it_can_encrypt_a_letter
-    #remove? bc apply_shift_to_letter
-    skip
-    assert_equal "f", @encrypt.encrypt("c")
+    assert_equal "dqakdqak", @encrypt.encrypt_message("abc abc ")
   end
 
   def test_it_can_find_a_letters_index

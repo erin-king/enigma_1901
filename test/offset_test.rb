@@ -6,15 +6,20 @@ require './lib/offset'
 
 class OffsetTest < Minitest::Test
 
-  def test_it_exists
-    offset = Offset.new(112982)
+  def setup
+    @offset = Offset.new(112982)
+  end
 
-    assert_instance_of Offset, offset
+  def test_it_exists
+    assert_instance_of Offset, @offset
   end
 
   def test_it_has_a_date_when_provided
-    offset = Offset.new(112982)
-    assert_equal 112982, offset.date
+    assert_equal 112982, @offset.date
+  end
+
+  def test_it_has_todays_date_when_date_not_provided
+
   end
 
 

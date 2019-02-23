@@ -8,4 +8,11 @@ require './lib/decrypt'
 
 class DecryptTest < Minitest::Test
 
+  def setup
+    @decrypt = Decrypt.new("01234", "112982")
+  end
+
+  def test_it_exists
+    assert_instance_of Decrypt, @decrypt
+  end
 end

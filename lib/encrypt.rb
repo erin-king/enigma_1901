@@ -23,7 +23,7 @@ class Encrypt
   def encrypt_message(message)
     encryption = []
     counter = 0
-    message.split(//).each do |letter|
+    message.downcase.split(//).each do |letter|
       counter += 1
       if counter == 1
         encryption << apply_shift_to_letter(@shift.shift_a, letter)

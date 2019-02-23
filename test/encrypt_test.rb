@@ -33,6 +33,10 @@ class EncryptTest < Minitest::Test
     assert_equal "dqakdqak", @encrypt.encrypt_message("abc abc ")
   end
 
+  def test_it_can_encrypt_message_with_capital_letters
+    assert_equal "dqakdqak", @encrypt.encrypt_message("Abc aBc ")
+  end
+
   def test_it_can_find_a_letters_index
     assert_equal 2, @encrypt.find_letter_index("c")
   end

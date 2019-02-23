@@ -16,6 +16,15 @@ class DecryptTest < Minitest::Test
     assert_instance_of Decrypt, @decrypt
   end
 
+  def test_decrypt_returns_hash
+    expected = {
+          decryption: "abc abc ",
+          key: "01234",
+          date: "112982"
+        }
+      assert_equal expected, @decrypt.decrypt("dqakdqak")
+  end
+
   def test_it_can_decrypt_cyphertext
     assert_equal "abc abc ", @decrypt.decrypt_cyphertext("dqakdqak")
   end

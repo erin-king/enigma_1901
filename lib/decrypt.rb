@@ -5,10 +5,21 @@ require './lib/shift'
 
 class Decrypt
 
+  attr_reader :shift
+
   def initialize(key, date)
     @shift = Shift.new(Key.new(key), Offset.new(date))
     @alphabet = ("a".."z").to_a << " "
   end
+
+  def decrypt(cyphertext)
+    {
+      decryption: decrypt_cyphertext(cyphertext),
+      key: shift.key.key,
+      date: shift.offset.date
+    }
+  end
+
 
   def decrypt_cyphertext(cyphertext)
     decryption = []
@@ -46,14 +57,4 @@ class Decrypt
     return nil
   end
 
-
 end
-
-# def encrypt(message)
-#   {
-#     encryption: encrypt_message(message),
-#     key: shift.key.key,
-#     date: shift.offset.date
-#   }
-# end
-#

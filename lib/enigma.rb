@@ -1,6 +1,7 @@
 require 'pry'
 require 'date'
 require './lib/encrypt'
+require './lib/decrypt'
 
 class Enigma
 
@@ -10,7 +11,8 @@ class Enigma
   end
 
   def decrypt(cyphertext, key, date = nil)
-    #return {cyphertext: "whejdhdh", key: "12345", date: "012219"}
+    decryptor = Decrypt.new(key, date)
+    decryptor.decrypt(cyphertext)
   end
 
 end

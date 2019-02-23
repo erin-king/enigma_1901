@@ -9,7 +9,6 @@ class EngimaTest < Minitest::Test
 
   def test_it_exists
     enigma = Enigma.new
-
     assert_instance_of Enigma, enigma
   end
 
@@ -19,6 +18,10 @@ class EngimaTest < Minitest::Test
     assert_equal "keder ohulw", encryption[:encryption]
   end
 
-
+  def test_it_decrypts_a_cyphertext
+    enigma = Enigma.new
+    decryption = enigma.decrypt("keder ohulw", "02715", "040895")
+    assert_equal "hello world", decryption[:decryption]
+  end
 
 end

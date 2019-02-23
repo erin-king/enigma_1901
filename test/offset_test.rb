@@ -39,5 +39,11 @@ class OffsetTest < Minitest::Test
     assert_equal "12764932324", @offset.squared_date
   end
 
+  def test_it_assigns_digit_for_squared_date_to_offsets
+    assert_equal 2, @offset.offset_a
+    assert_equal 3, @offset.offset_b
+    assert_equal 2, @offset.offset_c
+    assert_equal 4, @offset.offset_d
+  end
 
 end

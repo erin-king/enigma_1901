@@ -20,13 +20,13 @@ class OffsetTest < Minitest::Test
 
   def test_it_has_todays_date_when_date_not_provided
     offset = Offset.new(nil)
-    assert_equal "012319", offset.date
+    assert_equal "022319", offset.date
   end
 
   def test_it_can_format_date_when_given_nil
     offset = Offset.new(nil)
 
-    assert_equal "012319", offset.format_date(nil)
+    assert_equal "022319", offset.format_date(nil)
   end
 
   def test_format_date_returns_argument_date_if_date_is_not_nil

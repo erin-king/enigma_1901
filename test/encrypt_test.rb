@@ -13,6 +13,15 @@ class EncryptTest < Minitest::Test
     assert_instance_of Encrypt, @encrypt
   end
 
+  def test_encrypt_returns_hash
+    expected = {
+          encryption: "dqakdqak",
+          key: "01234",
+          date: "112982"
+        }
+      assert_equal expected, @encrypt.encrypt("abc abc ")
+  end
+
   def test_it_can_create_shifts_using_key_and_date_arguments
     assert_equal 3, @encrypt.shift.shift_a
     assert_equal 15, @encrypt.shift.shift_b

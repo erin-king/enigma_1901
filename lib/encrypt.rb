@@ -12,12 +12,12 @@ class Encrypt
     @alphabet = ("a".."z").to_a << " "
   end
 
-  #return encryption: cyphertext.to_s
-  #return key:
-  #return date:
-
   def encrypt(message)
-    
+    {
+      encryption: encrypt_message(message),
+      key: shift.key.key,
+      date: shift.offset.date
+    }
   end
 
   def encrypt_message(message)
@@ -42,8 +42,7 @@ class Encrypt
   end
 
   def apply_shift_to_letter(shift, letter)
-    shifted_letter = @alphabet.rotate(shift + find_letter_index(letter))
-    shifted_letter.flatten[0]
+    (@alphabet.rotate(shift + find_letter_index(letter))).flatten[0]
   end
 
   def find_letter_index(letter)
@@ -54,7 +53,4 @@ class Encrypt
     end
   end
 
-
 end
-
-#enum#with_index

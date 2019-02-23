@@ -6,6 +6,7 @@ require './lib/enigma'
 require './lib/offset'
 
 class EngimaTest < Minitest::Test
+
   def test_it_exists
     enigma = Enigma.new
 

@@ -19,7 +19,8 @@ class OffsetTest < Minitest::Test
   end
 
   def test_it_has_todays_date_when_date_not_provided
-
+    offset = Offset.new
+    assert_equal 01231, offset.date
   end
 
 

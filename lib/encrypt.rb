@@ -1,12 +1,14 @@
-# require './lib/engima'
+require './lib/enigma'
 
-# $ ruby ./lib/encrypt.rb message.txt encrypted.txt
-# Created 'encrypted.txt' with the key 82648 and date 240818
+enigma = Enigma.new
 
+input_1 = ARGV[0]
+input_2 = ARGV[1]
 
-
-# Runner file called encrypt.rb that takes two command line arguments. The first is an existing file that contains a message to encrypt. The second is a file where your program should write the encrypted message. In addition to writing the encrypted message to the file, your program should output to the screen the file it wrote to, the key and the date.
-first_arg, *the_rest = ARGV
-
-puts first_arg
-p the_rest
+File.open('lib/message.txt', "r") do |file|
+  file.each_line do |line|
+    enigma_hash = enigma.encrypt(line)
+    puts "Created '#{input_2}' with the key #{enigma_hash[:key]} and date #{enigma_hash[:date]}."
+    File.open(input_2, 'w') { |write_file| write_file.write(enigma_hash[:encryption]) }
+  end
+end

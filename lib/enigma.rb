@@ -1,7 +1,7 @@
 require 'pry'
 require 'date'
-require './lib/encrypt'
-require './lib/decrypt'
+require './lib/encryption'
+require './lib/decryption'
 
 class Enigma
 

@@ -1,60 +1,18 @@
-require 'pry'
-require './lib/key'
-require './lib/offset'
-require './lib/shift'
+require './lib/enigma'
 
-class Decrypt
+enigma = Enigma.new
 
-  attr_reader :shift
+# CLI format: ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 82648 240818
 
-  def initialize(key, date)
-    @shift = Shift.new(Key.new(key), Offset.new(date))
-    @alphabet = ("a".."z").to_a << " "
+read_file = ARGV[0]
+write_file = ARGV[1]
+key = ARGV[2]
+date = ARGV[3]
+
+File.open(read_file, "r") do |file|
+  file.each_line do |line|
+    enigma_hash = enigma.decrypt(line, key, date)
+    puts "Created '#{write_file}' with the key #{key} and date #{date}."
+    File.open(write_file, 'w') { |w_file| w_file.write(enigma_hash[:decryption]) }
   end
-
-  def decrypt(cyphertext)
-    {
-      decryption: decrypt_cyphertext(cyphertext),
-      key: shift.key.key,
-      date: shift.offset.date
-    }
-  end
-
-
-  def decrypt_cyphertext(cyphertext)
-    decryption = []
-    counter = 0
-    cyphertext.downcase.split(//).each do |letter|
-      counter += 1
-      if counter == 1
-        decryption << apply_shift_to_letter(@shift.shift_a, letter)
-      elsif counter == 2
-        decryption << apply_shift_to_letter(@shift.shift_b, letter)
-      elsif counter == 3
-        decryption << apply_shift_to_letter(@shift.shift_c, letter)
-      elsif counter == 4
-        decryption << apply_shift_to_letter(@shift.shift_d, letter)
-        counter = 0
-      end
-    end
-    decryption.join
-  end
-
-  def apply_shift_to_letter(shift, letter)
-    if find_letter_index(letter) == nil
-      return letter
-    else
-      (@alphabet.rotate(find_letter_index(letter) + (27 - shift))).flatten[0]
-    end
-  end
-
-  def find_letter_index(letter)
-    @alphabet.each_with_index do |alpha, index|
-      if alpha == letter
-        return index
-      end
-    end
-    return nil
-  end
-
 end

@@ -19,18 +19,13 @@ class OffsetTest < Minitest::Test
   end
 
   def test_it_has_todays_date_when_date_not_provided
-    offset = Offset.new(nil) #todays date
+    offset = Offset.new(nil) 
     expected = (Date.today).strftime("%m%d%y")
     assert_equal expected, offset.date
   end
 
-  # def test_it_can_format_date_when_given_nil
-  #   offset = Offset.new(nil) #todays date
-  #
-  #   assert_equal "022319", offset.format_date(nil)
-  # end
   def test_it_can_format_date_when_given_nil
-    offset = Offset.new(nil) #todays date
+    offset = Offset.new(nil)
     expected = (Date.today).strftime("%m%d%y")
     assert_equal expected, offset.format_date(nil)
   end

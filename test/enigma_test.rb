@@ -40,11 +40,22 @@ class EngimaTest < Minitest::Test
     assert_equal expected_date, decryption[:date]
   end
 
-  # def test_it_encrypts_a_message_with_random_generated_key_and_todays_date_then_decrypts
-  #   enigma = Enigma.new
-  #   encryption = enigma.encrypt("hello world")
-  #   assert_equal "keder ohulw", encryption[:encryption]
-  # end
+  def test_it_encrypts_a_message_with_random_generated_key_and_uses_todays_date_then_decrypts
+    enigma = Enigma.new
+    encryption = enigma.encrypt("hello world")
+
+    cyphertext = encryption[:encryption]
+    decrypt_key = encryption[:key]
+    decrypt_date = encryption[:date]
+
+    decryption = enigma.decrypt(cyphertext, decrypt_key, decrypt_date)
+
+    expected_date = (Date.today).strftime("%m%d%y")
+
+    assert_equal "hello world", decryption[:decryption]
+    assert_equal encryption[:key], decryption[:key]
+    assert_equal expected_date, decryption[:date]
+  end
 
   # def test_it_decrypts_a_cyphertext_with_a_key_and_uses_todays_date
   #   enigma = Enigma.new
